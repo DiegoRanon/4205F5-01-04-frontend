@@ -28,7 +28,7 @@ const ListeStage = () => {
         } else {
           const reponseData = await sendRequest(process.env.REACT_APP_BACKEND_URL +`  employeur/${userId}`);
           if (reponseData.success) {
-            setUserType(reponseData.employeur.userType); ``
+            setUserType(reponseData.employeur.userType); 
           }
         }
       } catch (err) {
