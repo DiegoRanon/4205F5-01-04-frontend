@@ -35,7 +35,7 @@ function Login(props) {
         try {
             // Essayer en tant qu'étudiant
             reponseData = await sendRequest(
-                process.env.REACT_APP_BACKEND_URL +"etudiant/connexion",
+                "http://localhost:5000/etudiant/connexion",
                 "POST",
                 JSON.stringify({
                     email: email,
@@ -53,7 +53,7 @@ function Login(props) {
             } else {
                 // Essayer en tant qu'employeur
                 reponseData = await sendRequest(
-                    process.env.REACT_APP_BACKEND_URL+"/employeur/connexion",
+                    "http://localhost:5000/employeur/connexion",
                     "POST",
                     JSON.stringify({
                         email: email,

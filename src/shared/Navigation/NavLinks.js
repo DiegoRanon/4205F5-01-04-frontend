@@ -21,11 +21,11 @@ function NavLinks(props) {
       try {
 
       
-        const reponseData = await sendRequest(process.env.REACT_APP_BACKEND_URL + `etudiant/${userId}`);
+        const reponseData = await sendRequest(`http://localhost:5000/etudiant/${userId}`);
         if (reponseData.success) {
           setUserType(reponseData.etudiant.userType);
         } else {
-          const reponseData = await sendRequest(process.env.REACT_APP_BACKEND_URL + `employeur/${userId}`);
+          const reponseData = await sendRequest(`http://localhost:5000/employeur/${userId}`);
           if (reponseData.success) {
             setUserType(reponseData.employeur.userType);
           }
@@ -72,11 +72,6 @@ function NavLinks(props) {
       {!auth.isLoggedIn && (
         <li>
           <NavLink to="/login">Login</NavLink>
-        </li>
-      )}
-      {auth.isLoggedIn && (
-        <li>
-          <NavLink to="/myProfile">Profile</NavLink>
         </li>
       )}
 

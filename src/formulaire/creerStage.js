@@ -67,7 +67,7 @@ function CreerStage() {
     try {
         
       reponseData = await sendRequest(
-        process.env.REACT_APP_BACKEND_URL + "stage/ajouterStage",
+        "http://localhost:5000/stage/ajouterStage",
             "POST",
             JSON.stringify({
                 nom:nom,
