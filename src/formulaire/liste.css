@@ -1,0 +1,35 @@
+.form-groupS {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin: 10px;
+}
+
+.form-groupS li {
+  list-style: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.form-groupS h2 {
+  font-size: 24px;
+  margin: 10px 0;
+  color: #333;
+}
+
+.form-groupS p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.form-groupS p:first-child {
+  font-weight: bold;
+}
+
+.form-groupS ul {
+  padding: 0;
+}
