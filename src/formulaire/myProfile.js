@@ -88,7 +88,7 @@ function MyProfile(props) {
           
           
         } else {
-          const reponseData = await sendRequest(process.env.REACT_APP_BACKEND_URL +`employeur/${userId}`);
+          const reponseData = await sendRequest(`https://four205f5-01-04.onrender.com/employeur/${userId}`);
           if (reponseData.success) {
             console.log("Profile Employeur");
             setEmployeur(true);
@@ -119,8 +119,7 @@ function MyProfile(props) {
     let reponseData = null;
     try {
       if(etudiant) {
-      reponseData = await sendRequest(
-        process.env.REACT_APP_BACKEND_URL +`etudiant/${userId}`,
+      reponseData = await sendRequest(`https://four205f5-01-04.onrender.com/etudiant/${userId}`,
         "PATCH",
         JSON.stringify({
             nom:nom,
@@ -133,8 +132,7 @@ function MyProfile(props) {
         }
     );
       } else {
-        reponseData = await sendRequest(
-          process.env.REACT_APP_BACKEND_URL +`employeur/${userId}`,
+        reponseData = await sendRequest(`https://four205f5-01-04.onrender.com/employeur/${userId}`,
           "PATCH",
           JSON.stringify({
               nom:nom,
