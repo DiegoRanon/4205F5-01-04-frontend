@@ -20,7 +20,7 @@ function App() {
   const auth = useContext(AuthContext);
 
   const login = useCallback((userId) => {
-    console.log(userId)
+    console.log(userId);
     setIsLoggedIn(true);
     setUserId(userId);
     auth.updateUserId(userId);
