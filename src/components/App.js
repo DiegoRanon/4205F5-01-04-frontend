@@ -42,7 +42,7 @@ function App() {
         <MainNavigation />
         <main>
         <Switch>
-          <Route path="/home" component={Home} />
+          <Route path="/" component={Home} />
           <Route path="/creerStage" component={CreerStage} />
           <Route path="/listeStage" component={listeStage} />
           <Route path="/createAccountEtudiant" component={createAccountEtudiant} />
