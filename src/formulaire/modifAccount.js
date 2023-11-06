@@ -84,7 +84,7 @@ function ModifAccount(props) {
 
 
       if (etudiant) {
-        const reponseData = await sendRequest(`https://frontend-qhl0.onrender.com/etudiant/${auth.userId}`);
+        const reponseData = await sendRequest(`https://backend-2h23.onrender.com/etudiant/${auth.userId}`);
         if (reponseData.success) {
           console.log("Profile Étudiant");
           setEtudiant(true);
@@ -97,7 +97,7 @@ function ModifAccount(props) {
           setAddressEtu(utilisateur.addressEtu);
         }
       } else {
-        const reponseData = await sendRequest(`https://frontend-qhl0.onrender.com/employeur/${auth.userId}`);
+        const reponseData = await sendRequest(`https://backend-2h23.onrender.com/employeur/${auth.userId}`);
 
         if (reponseData.success) {
           console.log("Profile Employeur");
@@ -132,7 +132,7 @@ try{
     alert("Modification réussi. Veuillez vous reconnecter.")
     if (etudiant) {
 
-      reponseData = await sendRequest(`https://frontend-qhl0.onrender.com/etudiant/${auth.userId}`,
+      reponseData = await sendRequest(`https://backend-2h23.onrender.com/etudiant/${auth.userId}`,
         "PATCH",
         JSON.stringify({
           nom: nom,
@@ -150,7 +150,7 @@ try{
     } else {
 
       console.log(nom + ",  "+ nomEntreprise + ",  " + adresseEntreprise + ", "+ email + ",  "+ motdepasse + ",  "+ numTel + ",  "+ posteTel)
-      reponseData = await sendRequest(`https://frontend-qhl0.onrender.com/employeur/${auth.userId}`,
+      reponseData = await sendRequest(`https://backend-2h23.onrender.com/employeur/${auth.userId}`,
         "PATCH",
         JSON.stringify({
           nom: nom,

@@ -78,7 +78,7 @@ function MyProfile(props) {
     const fetchUtilisateur = async () => {
       access = true;
       try {
-        const reponseData = await sendRequest(`https://frontend-qhl0.onrender.com/etudiant/${userId}`);
+        const reponseData = await sendRequest(`https://backend-2h23.onrender.com/etudiant/${userId}`);
         if (reponseData.success) {
           setEtudiant(true);
           utilisateur = reponseData.etudiant;
@@ -91,7 +91,7 @@ function MyProfile(props) {
           
           
         } else {
-          const reponseData = await sendRequest(`https://frontend-qhl0.onrender.com/employeur/${userId}`);
+          const reponseData = await sendRequest(`https://backend-2h23.onrender.com/employeur/${userId}`);
           if (reponseData.success) {
             setEmployeur(true);
             utilisateur = reponseData.employeur;
@@ -122,7 +122,7 @@ function MyProfile(props) {
     try {
       if(etudiant) {
       
-      reponseData = await sendRequest(`https://frontend-qhl0.onrender.com/etudiant/${userId}`,
+      reponseData = await sendRequest(`https://backend-2h23.onrender.com/etudiant/${userId}`,
         "PATCH",
         JSON.stringify({
             nom:nom,
@@ -137,7 +137,7 @@ function MyProfile(props) {
     );
     
       } else {
-        reponseData = await sendRequest(`https://frontend-qhl0.onrender.com/employeur/${userId}`,
+        reponseData = await sendRequest(`https://backend-2h23.onrender.com/employeur/${userId}`,
           "PATCH",
           JSON.stringify({
               nom:nom,
