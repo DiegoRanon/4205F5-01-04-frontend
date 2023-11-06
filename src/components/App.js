@@ -56,6 +56,7 @@ function App() {
           <Route path="/modifAccount" component={modifAccount} />
           <Route path="/postuler" component={postulerStage} />
           <Route path="/stageDetails" component={StageDetails} />
+          <Route path="*"   element={<component to="/home" /> } />
         </Switch>  
         </main>
       </Router>

@@ -71,7 +71,7 @@ function CreateAccountEtudiant(props) {
         try {
            
             reponseData = await sendRequest(
-                "https://backend-2h23.onrender.com/etudiant/inscription",
+                "http://localhost:5000/etudiant/inscription",
                 "POST",
                 JSON.stringify({
                     nom:nomComplet,

@@ -30,6 +30,7 @@ function MyProfile(props) {
   // Verif
   const [etudiant, setEtudiant] = useState(false);
   const [employeur, setEmployeur] = useState(false);
+  const [typeUtilisateur, setTypeUtilisateur] = useState("");
 
   let utilisateur;
 
@@ -78,9 +79,10 @@ function MyProfile(props) {
     const fetchUtilisateur = async () => {
       access = true;
       try {
-        const reponseData = await sendRequest(`https://backend-2h23.onrender.com/etudiant/${userId}`);
+        const reponseData = await sendRequest(`http://localhost:5000/etudiant/${userId}`);
         if (reponseData.success) {
           setEtudiant(true);
+          setTypeUtilisateur("etudiant");
           utilisateur = reponseData.etudiant;
           // Setup des variables
           setNom(utilisateur.nom);
@@ -91,9 +93,10 @@ function MyProfile(props) {
           
           
         } else {
-          const reponseData = await sendRequest(`https://backend-2h23.onrender.com/employeur/${userId}`);
+          const reponseData = await sendRequest(`http://localhost:5000/employeur/${userId}`);
           if (reponseData.success) {
             setEmployeur(true);
+            setTypeUtilisateur("employeur");
             utilisateur = reponseData.employeur;
             // Setup des variables
             setNom(utilisateur.nom);
@@ -122,7 +125,7 @@ function MyProfile(props) {
     try {
       if(etudiant) {
       
-      reponseData = await sendRequest(`https://backend-2h23.onrender.com/etudiant/${userId}`,
+      reponseData = await sendRequest(`http://localhost:5000/etudiant/${userId}`,
         "PATCH",
         JSON.stringify({
             nom:nom,
@@ -137,7 +140,7 @@ function MyProfile(props) {
     );
     
       } else {
-        reponseData = await sendRequest(`https://backend-2h23.onrender.com/employeur/${userId}`,
+        reponseData = await sendRequest(`http://localhost:5000/employeur/${userId}`,
           "PATCH",
           JSON.stringify({
               nom:nom,
@@ -193,7 +196,10 @@ function MyProfile(props) {
         )}
 
             <div className="form-group">
-            <Link to="/modifAccount" className="linkC" >
+            <Link to={{
+              pathname: '/modifAccount',
+              state: typeUtilisateur
+              }} className="linkC" >
               Modifier le compte
             </Link>
             </div>

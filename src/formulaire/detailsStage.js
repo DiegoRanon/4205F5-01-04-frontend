@@ -17,11 +17,11 @@ const StageDetails = () => {
   useEffect(() => {
     const fetchUtilisateur = async () => {
       try {
-        const reponseData = await sendRequest(`https://backend-2h23.onrender.com/etudiant/${userId}`);
+        const reponseData = await sendRequest(`http://localhost:5000/etudiant/${userId}`);
         if (reponseData.success) {
           setUserType(reponseData.etudiant.userType);
         } else {
-          const reponseData = await sendRequest(`https://backend-2h23.onrender.com/employeur/${userId}`);
+          const reponseData = await sendRequest(`http://localhost:5000/employeur/${userId}`);
           if (reponseData.success) {
             setUserType(reponseData.employeur.userType); 
           }
@@ -47,10 +47,10 @@ const StageDetails = () => {
     let etudiants = [];
     try {
 
-      reponseData = await sendRequest(`https://backend-2h23.onrender.com/stage/getEtudiants/${stage.id}`);
+      reponseData = await sendRequest(`http://localhost:5000/stage/getEtudiants/${stage.id}`);
       if (reponseData && reponseData.etudiants) {
         const studentDetails = reponseData.etudiants.map(etudiantId =>
-          sendRequest(`https://backend-2h23.onrender.com/etudiant/${etudiantId}`)
+          sendRequest(`http://localhost:5000/etudiant/${etudiantId}`)
         );
       const studentsDetails = await Promise.all(studentDetails);
       setAppliedStudents(studentsDetails.map(detail => detail.etudiant));
@@ -80,7 +80,7 @@ const StageDetails = () => {
     try {
 
         reponseData = await sendRequest(
-            `https://backend-2h23.onrender.com/stage/postulerStage/${stage.id}`,
+            `http://localhost:5000/stage/postulerStage/${stage.id}`,
             "POST",
             JSON.stringify({
                 etudiantId: auth.userId,

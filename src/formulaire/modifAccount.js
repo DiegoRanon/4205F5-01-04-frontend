@@ -4,9 +4,12 @@ import { useHttpClient } from "../shared/hooks/http-hook";
 import { useForm } from "../shared/hooks/form-hook";
 import { AuthContext } from '../shared/context/auth-context';
 import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function ModifAccount(props) {
   const auth = useContext(AuthContext);
+  const location = useLocation();
+  const typeUtilisateur = location.state;
   const { error, sendRequest, clearError } = useHttpClient();
   const [loadedEtudiant, setLoadedEtudiant] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -83,8 +86,8 @@ function ModifAccount(props) {
     try {
 
 
-      if (etudiant) {
-        const reponseData = await sendRequest(`https://backend-2h23.onrender.com/etudiant/${auth.userId}`);
+      if (typeUtilisateur == "etudiant") {
+        const reponseData = await sendRequest(`http://localhost:5000/etudiant/${auth.userId}`);
         if (reponseData.success) {
           console.log("Profile Étudiant");
           setEtudiant(true);
@@ -96,8 +99,8 @@ function ModifAccount(props) {
           setNumTel(utilisateur.numTel);
           setAddressEtu(utilisateur.addressEtu);
         }
-      } else {
-        const reponseData = await sendRequest(`https://backend-2h23.onrender.com/employeur/${auth.userId}`);
+      } else if(typeUtilisateur == "employeur") {
+        const reponseData = await sendRequest(`http://localhost:5000/employeur/${auth.userId}`);
 
         if (reponseData.success) {
           console.log("Profile Employeur");
@@ -130,9 +133,9 @@ function ModifAccount(props) {
     let reponseData = null;
 try{
     alert("Modification réussi. Veuillez vous reconnecter.")
-    if (etudiant) {
+    if (typeUtilisateur == "etudiant") {
 
-      reponseData = await sendRequest(`https://backend-2h23.onrender.com/etudiant/${auth.userId}`,
+      reponseData = await sendRequest(`http://localhost:5000/etudiant/${auth.userId}`,
         "PATCH",
         JSON.stringify({
           nom: nom,
@@ -147,10 +150,10 @@ try{
       );
 
 
-    } else {
+    } else if(typeUtilisateur == "employeur") {
 
       console.log(nom + ",  "+ nomEntreprise + ",  " + adresseEntreprise + ", "+ email + ",  "+ motdepasse + ",  "+ numTel + ",  "+ posteTel)
-      reponseData = await sendRequest(`https://backend-2h23.onrender.com/employeur/${auth.userId}`,
+      reponseData = await sendRequest(`http://localhost:5000/employeur/${auth.userId}`,
         "PATCH",
         JSON.stringify({
           nom: nom,

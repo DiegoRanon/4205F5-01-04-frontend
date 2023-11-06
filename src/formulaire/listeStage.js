@@ -30,11 +30,11 @@ const ListeStage = () => {
   useEffect(() => {
     const fetchUtilisateur = async () => {
       try {
-        const reponseData = await sendRequest(`https://backend-2h23.onrender.com/etudiant/${userId}`);
+        const reponseData = await sendRequest(`http://localhost:5000/etudiant/${userId}`);
         if (reponseData.success) {
           setUserType(reponseData.etudiant.userType);
         } else {
-          const reponseData = await sendRequest(`https://backend-2h23.onrender.com/employeur/${userId}`);
+          const reponseData = await sendRequest(`http://localhost:5000/employeur/${userId}`);
           if (reponseData.success) {
             setUserType(reponseData.employeur.userType); 
           }
@@ -53,7 +53,7 @@ const ListeStage = () => {
       const fetchEmployerStages = async () => {
         try {
           console.log("intérieur Employeur")
-          const reponseData = await sendRequest(`https://backend-2h23.onrender.com/stage/getStages/${userId}`);
+          const reponseData = await sendRequest(`http://localhost:5000/stage/getStages/${userId}`);
           setStages(reponseData.stages);
 
         } catch (error) {
@@ -70,7 +70,7 @@ const ListeStage = () => {
 
       const fetchEtudiantStages = async () => {
         try {
-          const reponseData = await sendRequest(`https://backend-2h23.onrender.com/stage/`);
+          const reponseData = await sendRequest(`http://localhost:5000/stage/`);
           setStages(reponseData.stages);
 
 
