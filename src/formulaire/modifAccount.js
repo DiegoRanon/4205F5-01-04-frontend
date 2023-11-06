@@ -89,6 +89,7 @@ function ModifAccount(props) {
       if (typeUtilisateur == "etudiant") {
         const reponseData = await sendRequest(`http://localhost:5000/etudiant/${auth.userId}`);
         if (reponseData.success) {
+
           console.log("Profile Étudiant");
           setEtudiant(true);
           utilisateur = reponseData.etudiant;
@@ -99,10 +100,11 @@ function ModifAccount(props) {
           setNumTel(utilisateur.numTel);
           setAddressEtu(utilisateur.addressEtu);
         }
-      } else if(typeUtilisateur == "employeur") {
+      } else if (typeUtilisateur == "employeur") {
         const reponseData = await sendRequest(`http://localhost:5000/employeur/${auth.userId}`);
 
         if (reponseData.success) {
+
           console.log("Profile Employeur");
           setEmployeur(true);
           utilisateur = reponseData.employeur;
@@ -128,53 +130,53 @@ function ModifAccount(props) {
   }, []);
 
 
-  const handleSubmit = async () => {
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     let reponseData = null;
-try{
-    alert("Modification réussi. Veuillez vous reconnecter.")
-    if (typeUtilisateur == "etudiant") {
+    try {
 
-      reponseData = await sendRequest(`http://localhost:5000/etudiant/${auth.userId}`,
-        "PATCH",
-        JSON.stringify({
-          nom: nom,
-          email: email,
-          motdepasse: motdepasse,
-          numTel: numTel,
-          addressEtu: addressEtu
-        }),
-        {
-          "Content-Type": "application/json",
-        }
-      );
+      alert("Modification réussi. Veuillez vous reconnecter.")
+      if (typeUtilisateur == "etudiant") {
 
+        reponseData = await sendRequest(`http://localhost:5000/etudiant/${auth.userId}`,
+          "PATCH",
+          JSON.stringify({
+            nom: nom,
+            email: email,
+            motdepasse: motdepasse,
+            numTel: numTel,
+            addressEtu: addressEtu
+          }),
+          {
+            "Content-Type": "application/json",
+          }
+        );
 
-    } else if(typeUtilisateur == "employeur") {
+      } else if (typeUtilisateur == "employeur") {
 
-      console.log(nom + ",  "+ nomEntreprise + ",  " + adresseEntreprise + ", "+ email + ",  "+ motdepasse + ",  "+ numTel + ",  "+ posteTel)
-      reponseData = await sendRequest(`http://localhost:5000/employeur/${auth.userId}`,
-        "PATCH",
-        JSON.stringify({
-          nom: nom,
-          nomEntreprise: nomEntreprise,
-          adresseEntreprise: adresseEntreprise,
-          email: email,
-          motdepasse: motdepasse,
-          numTel: numTel,
-          posteTel: posteTel
-        }),
-        {
-          "Content-Type": "application/json",
-        }
-      );
-      
-    }
+        console.log(nom + ",  " + nomEntreprise + ",  " + adresseEntreprise + ", " + email + ",  " + motdepasse + ",  " + numTel + ",  " + posteTel)
+        reponseData = await sendRequest(`http://localhost:5000/employeur/${auth.userId}`,
+          "PATCH",
+          JSON.stringify({
+            nom: nom,
+            nomEntreprise: nomEntreprise,
+            adresseEntreprise: adresseEntreprise,
+            email: email,
+            motdepasse: motdepasse,
+            numTel: numTel,
+            posteTel: posteTel
+          }),
+          {
+            "Content-Type": "application/json",
+          }
+        );
 
-  }catch (err) {
+      }
+
+    } catch (err) {
       console.log(err);
       alert("An error occurred while attempting to update the profile.");
-  }
+    }
 
 
 
