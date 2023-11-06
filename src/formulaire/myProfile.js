@@ -79,7 +79,7 @@ function MyProfile(props) {
     const fetchUtilisateur = async () => {
       access = true;
       try {
-        const reponseData = await sendRequest(`http://localhost:5000/etudiant/${userId}`);
+        const reponseData = await sendRequest(`https://backend-2h23.onrender.com/etudiant/${userId}`);
         if (reponseData.success) {
           setEtudiant(true);
           setTypeUtilisateur("etudiant");
@@ -93,7 +93,7 @@ function MyProfile(props) {
           
           
         } else {
-          const reponseData = await sendRequest(`http://localhost:5000/employeur/${userId}`);
+          const reponseData = await sendRequest(`https://backend-2h23.onrender.com/employeur/${userId}`);
           if (reponseData.success) {
             setEmployeur(true);
             setTypeUtilisateur("employeur");
@@ -125,7 +125,7 @@ function MyProfile(props) {
     try {
       if(etudiant) {
       
-      reponseData = await sendRequest(`http://localhost:5000/etudiant/${userId}`,
+      reponseData = await sendRequest(`https://backend-2h23.onrender.com/etudiant/${userId}`,
         "PATCH",
         JSON.stringify({
             nom:nom,
@@ -140,7 +140,7 @@ function MyProfile(props) {
     );
     
       } else {
-        reponseData = await sendRequest(`http://localhost:5000/employeur/${userId}`,
+        reponseData = await sendRequest(`https://backend-2h23.onrender.com/employeur/${userId}`,
           "PATCH",
           JSON.stringify({
               nom:nom,

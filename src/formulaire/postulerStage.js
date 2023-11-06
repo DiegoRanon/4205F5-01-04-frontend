@@ -19,7 +19,7 @@ const PostulerStage = ({ stageId }) => {
   useEffect(() => {
     const fetchEtudiant = async () => {
       try {
-        const responseData = await sendRequest(`http://localhost:5000/etudiant/${auth.userId}`);
+        const responseData = await sendRequest(`https://backend-2h23.onrender.com/etudiant/${auth.userId}`);
         setLoadedEtudiant(responseData.etudiant);
       } catch (err) {
         console.log(err);

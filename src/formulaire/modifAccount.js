@@ -87,7 +87,7 @@ function ModifAccount(props) {
 
 
       if (typeUtilisateur == "etudiant") {
-        const reponseData = await sendRequest(`http://localhost:5000/etudiant/${auth.userId}`);
+        const reponseData = await sendRequest(`https://backend-2h23.onrender.com/etudiant/${auth.userId}`);
         if (reponseData.success) {
 
           console.log("Profile Étudiant");
@@ -101,7 +101,7 @@ function ModifAccount(props) {
           setAddressEtu(utilisateur.addressEtu);
         }
       } else if (typeUtilisateur == "employeur") {
-        const reponseData = await sendRequest(`http://localhost:5000/employeur/${auth.userId}`);
+        const reponseData = await sendRequest(`https://backend-2h23.onrender.com/employeur/${auth.userId}`);
 
         if (reponseData.success) {
 
@@ -138,7 +138,7 @@ function ModifAccount(props) {
       alert("Modification réussi. Veuillez vous reconnecter.")
       if (typeUtilisateur == "etudiant") {
 
-        reponseData = await sendRequest(`http://localhost:5000/etudiant/${auth.userId}`,
+        reponseData = await sendRequest(`https://backend-2h23.onrender.com/etudiant/${auth.userId}`,
           "PATCH",
           JSON.stringify({
             nom: nom,
@@ -155,7 +155,7 @@ function ModifAccount(props) {
       } else if (typeUtilisateur == "employeur") {
 
         console.log(nom + ",  " + nomEntreprise + ",  " + adresseEntreprise + ", " + email + ",  " + motdepasse + ",  " + numTel + ",  " + posteTel)
-        reponseData = await sendRequest(`http://localhost:5000/employeur/${auth.userId}`,
+        reponseData = await sendRequest(`https://backend-2h23.onrender.com/employeur/${auth.userId}`,
           "PATCH",
           JSON.stringify({
             nom: nom,
