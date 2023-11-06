@@ -13,7 +13,7 @@ export const useHttpClient = () => {
           headers,
         });
         const responseData = await response.json();
-        console.log(responseData)
+
         if (!response.ok) {
           throw new Error(responseData.message);
         }

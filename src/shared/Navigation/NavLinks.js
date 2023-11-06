@@ -15,19 +15,18 @@ function NavLinks(props) {
   const userId = auth.userId;
   const [userType, setUserType] = useState("");
   let utilisateur;
-
   useEffect(() => {
     const fetchUtilisateur = async () => {
       try {
 
       
-        const reponseData = await sendRequest(`https://backend-2h23.onrender.com/etudiant/${userId}`);
+        const reponseData = await sendRequest(`https://frontend-qhl0.onrender.com/etudiant/${userId}`);
         if (reponseData.success) {
           setUserType(reponseData.etudiant.userType);
         } else {
-          const reponseData = await sendRequest(`https://backend-2h23.onrender.com/employeur/${userId}`);
+          const reponseData = await sendRequest(`https://frontend-qhl0.onrender.com/employeur/${userId}`);
           if (reponseData.success) {
-            setUserType(reponseData.employeur.userType);
+            setUserType(reponseData.employeur.userType); 
           }
         }
       } catch (err) {
@@ -51,7 +50,6 @@ function NavLinks(props) {
     }
   };
 
-
   return (
     <ul className="nav-links">
       <li>
@@ -67,6 +65,11 @@ function NavLinks(props) {
       {(auth.isLoggedIn && userType === "employeur") && (
         <li>
           <NavLink to="/creerStage">Créer Stages</NavLink>
+        </li>
+      )}
+       {(auth.isLoggedIn ) && (
+        <li>
+          <NavLink to="/myProfile">Mon profile</NavLink>
         </li>
       )}
       {!auth.isLoggedIn && (

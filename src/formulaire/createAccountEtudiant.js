@@ -16,6 +16,7 @@ function CreateAccountEtudiant(props) {
     const [motdepasse, setMotDePasse] = useState('');
     const [numTel, setNumTel] = useState('');
     const [userType, setUserType] = useState('');
+    const [addressEtu, setAddressEtu] = useState('');
     const { error, sendRequest, clearError } = useHttpClient();
     const [selectedOption, setSelectedOption] = useState('');
     const [isValid, setIsValid] = useState(true);
@@ -44,6 +45,10 @@ function CreateAccountEtudiant(props) {
             userType: {
                 value:"",
                 isValid:false
+            },
+            addressEtu: {
+                value:"",
+                isValid:false
             }
         },
         false
@@ -66,13 +71,14 @@ function CreateAccountEtudiant(props) {
         try {
            
             reponseData = await sendRequest(
-                "https://backend-2h23.onrender.com/etudiant/inscription",
+                "https://frontend-qhl0.onrender.com/etudiant/inscription",
                 "POST",
                 JSON.stringify({
                     nom:nomComplet,
                     email: email,
                     motdepasse: motdepasse,
                     numTel: numTel,
+                    addressEtu:addressEtu,
                     userType:"etudiant"
                 }),
                 {
@@ -90,6 +96,7 @@ function CreateAccountEtudiant(props) {
                 setNumTel("");
                 setMotDePasse("");
                 setUserType("");
+                setAddressEtu("");
                 history.push('/login');
 
             } else {
@@ -119,6 +126,10 @@ function CreateAccountEtudiant(props) {
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
                         <input type="email" id="email" name="email" value={email} onChange={(e) =>setEmail(e.target.value)} required onInput={inputHandler}/>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="address">Adresse</label>
+                        <input type="text" id="addressEtu" name="addressEtu" value={addressEtu} onChange={(e) =>setAddressEtu(e.target.value)} required onInput={inputHandler}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="phoneNumber">Numero de telephone</label>

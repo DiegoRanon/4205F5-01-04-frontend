@@ -5,6 +5,7 @@ import { useForm } from "../shared/hooks/form-hook";
 import { AuthContext } from '../shared/context/auth-context';
 import { useHistory } from 'react-router-dom';
 
+
 function Login(props) {
     const history = useHistory();
     const auth = useContext(AuthContext);
@@ -33,9 +34,9 @@ function Login(props) {
         let reponseData = null;
 
         try {
-            // Essayer en tant qu'étudiant
+            
             reponseData = await sendRequest(
-                "https://backend-2h23.onrender.com/etudiant/connexion",
+                "https://frontend-qhl0.onrender.com/etudiant/connexion",
                 "POST",
                 JSON.stringify({
                     email: email,
@@ -50,10 +51,11 @@ function Login(props) {
                 console.log("Connecter en tant qu'etudiant")
                 history.push('/home');
                 auth.login(reponseData.etudiant.id);
+                
             } else {
-                // Essayer en tant qu'employeur
+                
                 reponseData = await sendRequest(
-                    "https://backend-2h23.onrender.com/employeur/connexion",
+                    "https://frontend-qhl0.onrender.com/employeur/connexion",
                     "POST",
                     JSON.stringify({
                         email: email,
@@ -122,3 +124,6 @@ function Login(props) {
 }
 
 export default Login;
+
+
+

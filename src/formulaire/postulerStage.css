@@ -1,0 +1,53 @@
+.PostulerStage-form {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    width: 350px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+  }
+  
+  .PostulerStage-form div {
+    margin-bottom: 15px;
+  }
+  
+  .PostulerStage-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .PostulerStage-form input[type="text"],
+  .PostulerStage-form input[type="tel"],
+  .PostulerStage-form input[type="email"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  
+  .PostulerStage-form button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007BFF;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .PostulerStage-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .PostulerStage-form button[type="button"] {
+    margin-left: 10px;
+    background-color: #6c757d;
+  }
+  
+  .PostulerStage-form button[type="button"]:hover {
+    background-color: #565e64;
+  }
+  

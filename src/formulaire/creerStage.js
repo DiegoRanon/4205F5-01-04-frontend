@@ -67,7 +67,7 @@ function CreerStage() {
     try {
         
       reponseData = await sendRequest(
-        "https://backend-2h23.onrender.com/stage/ajouterStage",
+        "https://frontend-qhl0.onrender.com/stage/ajouterStage",
             "POST",
             JSON.stringify({
                 nom:nom,

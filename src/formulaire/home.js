@@ -4,7 +4,6 @@ import { useHttpClient } from "../shared/hooks/http-hook";
 import { useForm } from "../shared/hooks/form-hook";
 
 function Home(props) {
-
     return (
         <div className="container">
             <h2>Page d'accueil</h2>

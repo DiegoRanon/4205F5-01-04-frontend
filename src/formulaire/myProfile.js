@@ -22,6 +22,7 @@ function MyProfile(props) {
     const [nomEntreprise, setNomEntreprise] = useState('');
     const [adresseEntreprise, setAdresseEntreprise] = useState('');
     const [posteTel, setPosteTel] = useState('');
+    const [addressEtu, setAddressEtu] = useState('');
 
 
 
@@ -65,19 +66,20 @@ function MyProfile(props) {
       type: {
         value: '',
         isValid: false
+      },
+      adressEtu: {
+        value: '',
+        isValid: false
       }
     },
     false
   );
 
     const fetchUtilisateur = async () => {
-
       access = true;
-      console.log("access = true")
       try {
-        const reponseData = await sendRequest(process.env.REACT_APP_BACKEND_URL +`etudiant/${userId}`);
+        const reponseData = await sendRequest(`https://frontend-qhl0.onrender.com/etudiant/${userId}`);
         if (reponseData.success) {
-          console.log("Profile Étudiant");
           setEtudiant(true);
           utilisateur = reponseData.etudiant;
           // Setup des variables
@@ -85,12 +87,12 @@ function MyProfile(props) {
           setEmail(utilisateur.email);
           setMotDePasse(utilisateur.motdepasse);
           setNumTel(utilisateur.numTel);
+          setAddressEtu(utilisateur.addressEtu);
           
           
         } else {
-          const reponseData = await sendRequest(`https://four205f5-01-04.onrender.com/employeur/${userId}`);
+          const reponseData = await sendRequest(`https://frontend-qhl0.onrender.com/employeur/${userId}`);
           if (reponseData.success) {
-            console.log("Profile Employeur");
             setEmployeur(true);
             utilisateur = reponseData.employeur;
             // Setup des variables
@@ -109,30 +111,33 @@ function MyProfile(props) {
       }
     };
 
-    if(access == false) {
+    if(access === false) {
     fetchUtilisateur();
     }
   
-
+    
   const handleSubmit = async (event) => {
     event.preventDefault();
     let reponseData = null;
     try {
       if(etudiant) {
-      reponseData = await sendRequest(`https://four205f5-01-04.onrender.com/etudiant/${userId}`,
+      
+      reponseData = await sendRequest(`https://frontend-qhl0.onrender.com/etudiant/${userId}`,
         "PATCH",
         JSON.stringify({
             nom:nom,
             email: email,
             motdepasse: motdepasse,
-            numTel:numTel
+            numTel:numTel,
+            addressEtu:addressEtu
         }),
         {
             "Content-Type": "application/json",
         }
     );
+    
       } else {
-        reponseData = await sendRequest(`https://four205f5-01-04.onrender.com/employeur/${userId}`,
+        reponseData = await sendRequest(`https://frontend-qhl0.onrender.com/employeur/${userId}`,
           "PATCH",
           JSON.stringify({
               nom:nom,
@@ -159,65 +164,38 @@ function MyProfile(props) {
     <AuthContext.Provider value={{ isLoggedIn: isLoggedIn, userId: userId, login: auth.login, logout: auth.logout }}>
       <div className="container">
         <h2>Mon Profile</h2>
-        {etudiant && (
+        {etudiant && ( 
           <div>  
             <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                        <label htmlFor="Nom">Nom</label>
-                        <input type="text" id="nom" name="nom" value={nom} onChange={(e) =>setNom(e.target.value)} required onInput={inputHandler}/>
+             <div>
+            <p>Nom: <strong>{nom}</strong></p>
+            <p>Email: <strong>{email}</strong></p>
+            <p>Numero de telephone: <strong>{numTel}</strong> </p>
+            <p>Adresse de l'étudiant: <strong>{addressEtu}</strong> </p>
               </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input type="email" id="email" name="email" value={email} onChange={(e) =>setEmail(e.target.value)} required onInput={inputHandler}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="phoneNumber">Numero de telephone</label>
-                        <input type="tel" id="numeroTelephone" name="numeroTelephone" value={numTel} onChange={(e) =>setNumTel(e.target.value)} required onInput={inputHandler}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" id="password" name="password" value={motdepasse} onChange={(e) =>setMotDePasse(e.target.value)} required onInput={inputHandler}/>
-                    </div>
-                    </form>
+            </form>
           </div>
         )}
+   
         {employeur && (
           <div>
             <form onSubmit={handleSubmit}>
-             <div className="form-group">
-                        <label htmlFor="Nom">Nom</label>
-                        <input type="text" id="nom" name="nom" value={nom} onChange={(e) =>setNom(e.target.value)} required onInput={inputHandler}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input type="email" id="email" name="email" value={email} onChange={(e) =>setEmail(e.target.value)} required onInput={inputHandler}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="nomEntreprise">Nom de l'entreprise</label>
-                        <input type="text" id="nomEntreprise" name="nomEntreprise" value={nomEntreprise} onChange={(e) =>setNomEntreprise(e.target.value)} required onInput={inputHandler}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="adresseEntreprise">Adresse de l'entreprise</label>
-                        <input type="text" id="adresseEntreprise" name="adresseEntreprise" value={adresseEntreprise} onChange={(e) =>setAdresseEntreprise(e.target.value)} required onInput={inputHandler}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="numeroTelephone">Numero de telephone de l'employeur</label>
-                        <input type="tel" id="numeroTelephone" name="numeroTelephone" value={numTel} onChange={(e) =>setNumTel(e.target.value)} required onInput={inputHandler}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="posteTel">Numero de telephone du poste</label>
-                        <input type="tel" id="posteTel" name="posteTel" value={posteTel} onChange={(e) =>setPosteTel(e.target.value)} required onInput={inputHandler}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" id="password" name="password" value={motdepasse} onChange={(e) =>setMotDePasse(e.target.value)} required onInput={inputHandler}/>
-                        </div>
-                        </form>
+            <div>
+            <p>Nom: <strong>{nom}</strong> </p>
+            <p>Email: <strong>{email}</strong> </p>
+            <p>Numero de telephone: <strong>{numTel}</strong></p>
+            <p>nomEntreprise: <strong>{nomEntreprise}</strong> </p>
+            <p>adresseEntreprise: <strong>{adresseEntreprise}</strong> </p>
+            <p>posteTel: <strong>{posteTel}</strong></p>
+              </div>
+           </form>
           </div>
         )}
 
             <div className="form-group">
-            <button type="submit">Modifier un compte</button>
+            <Link to="/modifAccount" className="linkC" >
+              Modifier le compte
+            </Link>
             </div>
           
       </div>
@@ -226,3 +204,5 @@ function MyProfile(props) {
 }
 
 export default MyProfile;
+//<p>Nom:{utilisateur.nom}</p>
+//<p>Adresse de lentreprise : {stage.adresseEntreprise}</p>
