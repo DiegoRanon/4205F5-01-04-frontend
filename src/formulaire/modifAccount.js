@@ -135,7 +135,7 @@ function ModifAccount(props) {
     let reponseData = null;
     try {
 
-      alert("Modification réussi. Veuillez vous reconnecter.")
+      alert("Modification réussi.")
       if (typeUtilisateur == "etudiant") {
 
         reponseData = await sendRequest(`https://backend-2h23.onrender.com/etudiant/${auth.userId}`,
