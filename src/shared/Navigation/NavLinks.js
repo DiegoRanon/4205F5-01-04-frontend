@@ -62,6 +62,11 @@ function NavLinks(props) {
           <NavLink to="/listeStage">Liste Stages</NavLink>
         </li>
       )}
+        {(auth.isLoggedIn && userType === "etudiant") && (
+        <li>
+          <NavLink to="/historiqueStage">Historique</NavLink>
+        </li>
+      )}
       {(auth.isLoggedIn && userType === "employeur") && (
         <li>
           <NavLink to="/creerStage">Créer Stages</NavLink>

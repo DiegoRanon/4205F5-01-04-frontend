@@ -1,0 +1,38 @@
+/* historiqueStage.css */
+
+/* Style for the container of each stage */
+.stageContainer {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+/* Style for stage name */
+.stageName {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Style for date */
+.stageDate {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Different status colors */
+.accepted {
+    color: green;
+    font-weight: bold;
+}
+
+.refused {
+    color: red;
+    font-weight: bold;
+}
+
+.en-attente {
+    color: black;
+    font-weight: bold;
+}

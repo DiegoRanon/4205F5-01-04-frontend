@@ -15,7 +15,7 @@ import modifAccount from "../formulaire/modifAccount";
 import postulerStage from "../formulaire/postulerStage"
 import { AuthContext } from "../shared/context/auth-context";
 import StageDetails from '../formulaire/detailsStage';
-
+import historiqueStage from '../formulaire/historiqueStage'
 
 function App() {
   const [userId, setUserId] = useState(null);
@@ -56,6 +56,7 @@ function App() {
           <Route path="/modifAccount" component={modifAccount} />
           <Route path="/postuler" component={postulerStage} />
           <Route path="/stageDetails" component={StageDetails} />
+          <Route path="/historiqueStage" component={historiqueStage} />
           <Route path="*"   element={<component to="/home" /> } />
         </Switch>  
         </main>
